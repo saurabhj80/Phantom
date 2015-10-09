@@ -45,6 +45,8 @@
     }
 }
 
+#pragma mark - Display Face
+
 - (void) displayFeatures:(NSArray *) features withImage:(UIImage *)facePicture
 {
     
@@ -54,42 +56,43 @@
         // If we have a face feature
         if([obj isKindOfClass:[CIFaceFeature class]]){
 
-            CIFaceFeature * faceObject = obj;
+            CIFaceFeature * feature = obj;
             
-            CGRect modifiedFaceBounds = faceObject.bounds;
-            modifiedFaceBounds.origin.y = facePicture.size.height-faceObject.bounds.size.height-faceObject.bounds.origin.y;
+            CGRect frame = feature.bounds;
+            frame.origin.y = facePicture.size.height-feature.bounds.size.height-feature.bounds.origin.y;
             
-            [self addSubViewWithFrame:modifiedFaceBounds];
+            // Add the face
+            [self addface:frame];
             
 //            if(faceObject.hasLeftEyePosition)
 //            {
 //                
-//                CGRect leftEye = CGRectMake(faceObject.leftEyePosition.x,(facePicture.size.height-faceObject.leftEyePosition.y), 10, 10);
+//                CGRect leftEye = CGRectMake(feature.leftEyePosition.x,(facePicture.size.height-feature.leftEyePosition.y), 10, 10);
 //                [self addSubViewWithFrame:leftEye];
 //            }
 //            
 //            if(faceObject.hasRightEyePosition)
 //            {
 //                
-//                CGRect rightEye = CGRectMake(faceObject.rightEyePosition.x, (facePicture.size.height-faceObject.rightEyePosition.y), 10, 10);
+//                CGRect rightEye = CGRectMake(feature.rightEyePosition.x, (facePicture.size.height-feature.rightEyePosition.y), 10, 10);
 //                [self addSubViewWithFrame:rightEye];
 //                
 //            }
 //            if(faceObject.hasMouthPosition)
 //            {
-//                CGRect  mouth = CGRectMake(faceObject.mouthPosition.x,facePicture.size.height-faceObject.mouthPosition.y,10, 10);
+//                CGRect  mouth = CGRectMake(feature.mouthPosition.x,facePicture.size.height-feature.mouthPosition.y,10, 10);
 //                [self addSubViewWithFrame:mouth];
 //            }
         }
     }];
 }
 
--(void)addSubViewWithFrame:(CGRect)frame
+-(void)addface:(CGRect)frame
 {
-    UIView* highlitView = [[UIView alloc] initWithFrame:frame];
-    highlitView.layer.borderWidth = 2;
-    highlitView.layer.borderColor = [[UIColor redColor] CGColor];
-    [self.imgView addSubview:highlitView];
+    UIView* view = [[UIView alloc] initWithFrame:frame];
+    view.layer.borderWidth = 2;
+    view.layer.borderColor = [[UIColor redColor] CGColor];
+    [self.imgView addSubview:view];
 }
 
 
