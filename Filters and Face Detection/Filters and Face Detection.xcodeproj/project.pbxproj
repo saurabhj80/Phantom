@@ -16,6 +16,8 @@
 		1F6A88451BC5FBCF00ADE94B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6A88441BC5FBCF00ADE94B /* Assets.xcassets */; };
 		1F6A88481BC5FBCF00ADE94B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6A88461BC5FBCF00ADE94B /* LaunchScreen.storyboard */; };
 		1F6A88571BC5FD5600ADE94B /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A88561BC5FD5600ADE94B /* MainTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1FD2F9A51BC72E45002DB463 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2F9A41BC72E45002DB463 /* UIImage+Resize.m */; settings = {ASSET_TAGS = (); }; };
+		1FD2F9AB1BC74082002DB463 /* PhotoFaceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2F9AA1BC74082002DB463 /* PhotoFaceDetection.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		1F6A88491BC5FBCF00ADE94B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6A88551BC5FD5600ADE94B /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTableViewController.h; path = Classes/Controller/MainTableViewController.h; sourceTree = "<group>"; };
 		1F6A88561BC5FD5600ADE94B /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTableViewController.m; path = Classes/Controller/MainTableViewController.m; sourceTree = "<group>"; };
+		1FD2F9A31BC72E45002DB463 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "Classes/Category/UIImage+Resize.h"; sourceTree = "<group>"; };
+		1FD2F9A41BC72E45002DB463 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "Classes/Category/UIImage+Resize.m"; sourceTree = "<group>"; };
+		1FD2F9A91BC74082002DB463 /* PhotoFaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoFaceDetection.h; path = Classes/PhotoFaceDetection.h; sourceTree = "<group>"; };
+		1FD2F9AA1BC74082002DB463 /* PhotoFaceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoFaceDetection.m; path = Classes/PhotoFaceDetection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,19 +74,9 @@
 		1F6A88371BC5FBCF00ADE94B /* Filters and Face Detection */ = {
 			isa = PBXGroup;
 			children = (
-				1F6A88551BC5FD5600ADE94B /* MainTableViewController.h */,
-				1F6A88561BC5FD5600ADE94B /* MainTableViewController.m */,
-				1F6A883B1BC5FBCF00ADE94B /* AppDelegate.h */,
-				1F6A883C1BC5FBCF00ADE94B /* AppDelegate.m */,
+				1FD2F9A61BC737BB002DB463 /* Classes */,
 				1F6A88411BC5FBCF00ADE94B /* Main.storyboard */,
-				1F6A88441BC5FBCF00ADE94B /* Assets.xcassets */,
-				1F6A88461BC5FBCF00ADE94B /* LaunchScreen.storyboard */,
-				1F6A88491BC5FBCF00ADE94B /* Info.plist */,
 				1F6A88381BC5FBCF00ADE94B /* Supporting Files */,
-				1F0CD7981BC7123000720423 /* PhotoFilter.h */,
-				1F0CD7991BC7123000720423 /* PhotoFilter.m */,
-				1F0CD79D1BC714D700720423 /* ImageViewController.h */,
-				1F0CD79E1BC714D700720423 /* ImageViewController.m */,
 			);
 			path = "Filters and Face Detection";
 			sourceTree = "<group>";
@@ -88,9 +84,47 @@
 		1F6A88381BC5FBCF00ADE94B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1F6A883B1BC5FBCF00ADE94B /* AppDelegate.h */,
+				1F6A883C1BC5FBCF00ADE94B /* AppDelegate.m */,
+				1F6A88441BC5FBCF00ADE94B /* Assets.xcassets */,
+				1F6A88461BC5FBCF00ADE94B /* LaunchScreen.storyboard */,
+				1F6A88491BC5FBCF00ADE94B /* Info.plist */,
 				1F6A88391BC5FBCF00ADE94B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1FD2F9A61BC737BB002DB463 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1F0CD7981BC7123000720423 /* PhotoFilter.h */,
+				1F0CD7991BC7123000720423 /* PhotoFilter.m */,
+				1FD2F9A91BC74082002DB463 /* PhotoFaceDetection.h */,
+				1FD2F9AA1BC74082002DB463 /* PhotoFaceDetection.m */,
+				1FD2F9A81BC737C9002DB463 /* Category */,
+				1FD2F9A71BC737C1002DB463 /* Controllers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1FD2F9A71BC737C1002DB463 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1F6A88551BC5FD5600ADE94B /* MainTableViewController.h */,
+				1F6A88561BC5FD5600ADE94B /* MainTableViewController.m */,
+				1F0CD79D1BC714D700720423 /* ImageViewController.h */,
+				1F0CD79E1BC714D700720423 /* ImageViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1FD2F9A81BC737C9002DB463 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1FD2F9A31BC72E45002DB463 /* UIImage+Resize.h */,
+				1FD2F9A41BC72E45002DB463 /* UIImage+Resize.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,9 +199,11 @@
 			files = (
 				1F0CD79F1BC714D700720423 /* ImageViewController.m in Sources */,
 				1F0CD79A1BC7123000720423 /* PhotoFilter.m in Sources */,
+				1FD2F9AB1BC74082002DB463 /* PhotoFaceDetection.m in Sources */,
 				1F6A883D1BC5FBCF00ADE94B /* AppDelegate.m in Sources */,
 				1F6A883A1BC5FBCF00ADE94B /* main.m in Sources */,
 				1F6A88571BC5FD5600ADE94B /* MainTableViewController.m in Sources */,
+				1FD2F9A51BC72E45002DB463 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TEe-ge-tBn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TEe-ge-tBn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -31,6 +31,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="34b-BY-HzP"/>
+                    <connections>
+                        <segue destination="Oav-PE-SuF" kind="show" identifier="showImageSegue" id="b6i-se-7Qm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8E-6X-O3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,28 +50,13 @@
                     <view key="view" contentMode="scaleToFill" id="k9z-a2-Lt8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CHj-20-UuF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                            </imageView>
-                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="CHj-20-UuF" secondAttribute="trailing" id="SCc-Vs-Xar"/>
-                            <constraint firstItem="CHj-20-UuF" firstAttribute="top" secondItem="k9z-a2-Lt8" secondAttribute="top" id="btA-uR-woW"/>
-                            <constraint firstItem="CHj-20-UuF" firstAttribute="bottom" secondItem="0uD-Dk-cdQ" secondAttribute="top" id="sIe-rI-0di"/>
-                            <constraint firstItem="CHj-20-UuF" firstAttribute="leading" secondItem="k9z-a2-Lt8" secondAttribute="leading" id="vOe-QA-4WD"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="imgView" destination="CHj-20-UuF" id="bUc-CT-u5g"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sae-4B-KGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1811" y="490"/>
+            <point key="canvasLocation" x="1810.5" y="489.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GDv-XJ-zeD">

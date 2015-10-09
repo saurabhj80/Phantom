@@ -10,15 +10,27 @@
 
 @implementation PhotoFilter
 
+#pragma mark - Helper Function
+
 + (void) applyFilter:(CIFilter *)filter toImage:(UIImage *)image withBlock:(void (^)(UIImage * image))block
 {
-    CIImage* img = image.CIImage;
+    // Create CGImage
+    CIImage *inputImage  = [CIImage imageWithCGImage:[image CGImage]];
+    
+    // Create a context
+    CIContext *context = [CIContext contextWithOptions:nil];
 
-    CIContext* context = [CIContext contextWithOptions:nil];
-    [filter setValue:img forKey:kCIInputImageKey];
-    CIImage* output = [filter outputImage];
-    CGImageRef cgimg = [context createCGImage:output fromRect:[output extent]];
-    UIImage* filteredImage = [UIImage imageWithCGImage:cgimg];
+    // Set the input image to the filter
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    
+    // Get the resultant image
+    CIImage *resultImage = [filter valueForKey:kCIOutputImageKey];
+    
+    // CGImage from CIImage
+    CGImageRef filteredCGImage = [context createCGImage:resultImage fromRect:[resultImage extent]];
+    
+    // UIImage
+    UIImage *filteredImage =  [UIImage imageWithCGImage:filteredCGImage];
     
     if (block) {
         block(filteredImage);

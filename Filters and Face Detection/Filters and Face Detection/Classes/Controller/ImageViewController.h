@@ -10,5 +10,8 @@
 
 @interface ImageViewController : UIViewController
 
-- (instancetype)initWithImage:(UIImage *)image;
+@property (weak, nonatomic) CIFilter* filter;
+@property (weak, nonatomic) UIImage* image;
+@property (strong, nonatomic) NSArray* features;
+
 @end
