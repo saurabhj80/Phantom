@@ -14,27 +14,29 @@
 
 + (void) applyFilter:(CIFilter *)filter toImage:(UIImage *)image withBlock:(void (^)(UIImage * image))block
 {
-    // Create CGImage
-    CIImage *inputImage  = [CIImage imageWithCGImage:[image CGImage]];
-    
-    // Create a context
-    CIContext *context = [CIContext contextWithOptions:nil];
-
-    // Set the input image to the filter
-    [filter setValue:inputImage forKey:kCIInputImageKey];
-    
-    // Get the resultant image
-    CIImage *resultImage = [filter valueForKey:kCIOutputImageKey];
-    
-    // CGImage from CIImage
-    CGImageRef filteredCGImage = [context createCGImage:resultImage fromRect:[resultImage extent]];
-    
-    // UIImage
-    UIImage *filteredImage =  [UIImage imageWithCGImage:filteredCGImage];
-    
-    if (block) {
-        block(filteredImage);
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        // Create CGImage
+        CIImage *inputImage  = [CIImage imageWithCGImage:[image CGImage]];
+        
+        // Create a context
+        CIContext *context = [CIContext contextWithOptions:nil];
+        
+        // Set the input image to the filter
+        [filter setValue:inputImage forKey:kCIInputImageKey];
+        
+        // Get the resultant image
+        CIImage *resultImage = [filter valueForKey:kCIOutputImageKey];
+        
+        // CGImage from CIImage
+        CGImageRef filteredCGImage = [context createCGImage:resultImage fromRect:[resultImage extent]];
+        
+        // UIImage
+        UIImage *filteredImage =  [UIImage imageWithCGImage:filteredCGImage];
+        
+        if (block) {
+            block(filteredImage);
+        }
+    });
 }
 
 @end

@@ -12,7 +12,7 @@
 
 - (UIImage *) resizeImageToSize:(CGSize)size
 {
-    UIGraphicsBeginImageContextWithOptions(size, false, 0);
+    UIGraphicsBeginImageContextWithOptions(size, false, 1);
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     [self drawInRect:rect];
     UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
