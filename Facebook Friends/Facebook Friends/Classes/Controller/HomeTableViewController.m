@@ -16,7 +16,7 @@
 
 @interface HomeTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray<Friend *>* friends;
+@property (strong, nonatomic) NSArray<Friend *>* friends;
 
 @end
 
@@ -29,26 +29,24 @@
     // Manager to fetch the friends
     [FBManager getFriends:^(NSArray<id> * _Nullable friends, NSError * _Nullable error) {
         if (friends) {
+            
+            NSMutableArray<Friend *>* f = [NSMutableArray new];
+            
             for (NSDictionary* data in friends) {
                 Friend* friend = [[Friend alloc] initWithData:data];
-                [self.friends addObject:friend];
+                [f addObject:friend];
             }
+            
+            // Sort the array based on the first name
+            NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+            self.friends = [f sortedArrayUsingDescriptors:@[sort]];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
         }
     }];
     
-}
-
-#pragma mark - Getter
-
--(NSMutableArray<Friend *> *)friends
-{
-    if (!_friends) {
-        _friends = [[NSMutableArray alloc] init];
-    }
-    return _friends;
 }
 
 #pragma mark - Table view data source
@@ -60,10 +58,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    // Configure the cell...
     cell.textLabel.text = self.friends[indexPath.row].name;
-    
     return cell;
 }
 
