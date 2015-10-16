@@ -9,6 +9,7 @@
 #import "HomeTableViewController.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "Friend.h"
 
@@ -59,6 +60,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = self.friends[indexPath.row].name;
+    [cell.imageView setImageWithURL:self.friends[indexPath.row].pictureURL];
     return cell;
 }
 
