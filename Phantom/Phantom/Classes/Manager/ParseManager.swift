@@ -10,20 +10,33 @@ import UIKit
 
 public class ParseManager: NSObject {
     
+    private override init() {}
+    
+    // Singleton
+    public static let sharedManager = ParseManager()
+    
     // fetches the feed from parse
     public func fetchFeed(block: ([FeedObject]?, NSError?) -> ()) {
-        let query = PFQuery(className: FeedObject.parseClassName())
-        query.findObjectsInBackgroundWithBlock { (object, error) -> Void in
+        
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
             
-            // if objects exist
-            if let objects = object {
-                if let feed = objects as? [FeedObject] {
-                    block(feed, error)
-                    return
+            if let geo = geopoint {
+                
+                let query = PFQuery(className: FeedObject.parseClassName())
+                query.includeKey("user")
+                query.whereKey("location", nearGeoPoint: geo, withinMiles: 5)
+                query.findObjectsInBackgroundWithBlock { (object, error) in
+                    
+                    // if objects exist
+                    if let objects = object as? [FeedObject] {
+                        block(objects, error)
+                    } else {
+                        block(nil, error)
+                    }
                 }
+            } else {
+                block(nil, error)
             }
-            
-            block(nil, error)
         }
     }
     

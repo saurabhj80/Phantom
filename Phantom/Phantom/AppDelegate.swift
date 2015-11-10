@@ -13,12 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private struct ParseConstants {
+        static let ApplicationId = "lbQK6NadK4cdWx5LAJblZpRN1giDTc1wDpwE3Cxi"
+        static let ClientKey = "QLHzFLueJFugBQmCkfP1XNMMAayWT5hgR885Jj6n"
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
         // register
         FeedObject .registerSubclass()
+        Parse.setApplicationId(ParseConstants.ApplicationId, clientKey: ParseConstants.ClientKey)
         return true
     }
 
