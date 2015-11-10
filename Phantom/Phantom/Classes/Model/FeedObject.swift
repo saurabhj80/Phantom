@@ -8,6 +8,13 @@
 
 import UIKit
 
-class FeedObject: PFObject {
-
+public class FeedObject: PFObject, PFSubclassing {
+    
+    // PFSubclassing
+    public class func parseClassName() -> String {
+        return "FeedObject"
+    }
+    
+    dynamic var postImage: PFFile!
+    dynamic var user: PFUser!
 }

@@ -10,15 +10,33 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // IBOutlets
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    
+    
+    var feed: FeedObject? {
+        didSet {
+            guard let f = feed else {
+                return
+            }
+            updateGUI(f)
+        }
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // Updates the GUI
+    private func updateGUI(feed: FeedObject) {
+        
+        // post image
+        if let str = feed.postImage.url {
+            if let url = NSURL(string: str) {
+                imgView.sd_setImageWithURL(url)
+            }
+        }
+        
+        
+        
     }
-
+    
 }

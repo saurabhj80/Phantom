@@ -8,6 +8,23 @@
 
 import UIKit
 
-class ParseManager: NSObject {
-
+public class ParseManager: NSObject {
+    
+    // fetches the feed from parse
+    public func fetchFeed(block: ([FeedObject]?, NSError?) -> ()) {
+        let query = PFQuery(className: FeedObject.parseClassName())
+        query.findObjectsInBackgroundWithBlock { (object, error) -> Void in
+            
+            // if objects exist
+            if let objects = object {
+                if let feed = objects as? [FeedObject] {
+                    block(feed, error)
+                    return
+                }
+            }
+            
+            block(nil, error)
+        }
+    }
+    
 }

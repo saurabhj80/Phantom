@@ -9,5 +9,7 @@
 #ifndef BridingHeader_h
 #define BridingHeader_h
 
+#import <Parse.h>
+#import <UIImageView+WebCache.h>
 
 #endif /* BridingHeader_h */
