@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeFeedTableViewController: UITableViewController {
+class HomeFeedTableViewController: UITableViewController, UITabBarControllerDelegate {
 
     // data source
     private var feedArray = [FeedObject]()
@@ -19,6 +19,13 @@ class HomeFeedTableViewController: UITableViewController {
         // register cell
         tableView.registerNib(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         refreshFeed()
+        
+        tabBarController?.delegate = self
+        
+    }
+    
+    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CameraAnimatedTransitioning(duration: 1)
     }
 
     private func refreshFeed() {
@@ -35,6 +42,11 @@ class HomeFeedTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func refreshContollerPressed(sender: UIRefreshControl) {
+        refreshFeed()
+    }
+    
+    
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
