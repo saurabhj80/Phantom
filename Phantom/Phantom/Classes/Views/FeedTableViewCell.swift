@@ -25,6 +25,10 @@ class FeedTableViewCell: UITableViewCell {
         }
     }
     
+    class func nib() -> String {
+        return "FeedTableViewCell"
+    }
+    
     // Updates the GUI
     private func updateGUI(feed: FeedObject) {
         

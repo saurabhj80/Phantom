@@ -8,18 +8,16 @@
 
 import UIKit
 
+/*! @brief A subclass of UITabBarController, which manages custom transition */
+
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIViewControllerTransitioningDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.delegate = self
+        self.delegate = self
     }
     
-//    // Custom transition
-//    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        if toVC.isKindOfClass(CameraViewController.self) {
-//            return CameraAnimatedTransitioning(duration: 1)
-//        }
-//        return nil
-//    }
+    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CameraAnimatedTransitioning(duration: 1)
+    }
 }

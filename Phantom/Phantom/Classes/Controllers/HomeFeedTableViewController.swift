@@ -7,25 +7,32 @@
 //
 
 import UIKit
+import AVFoundation
 
 class HomeFeedTableViewController: UITableViewController, UITabBarControllerDelegate {
 
     // data source
     private var feedArray = [FeedObject]()
     
+    // Constants
+    private struct Constants {
+        static let CellIdentifier = "Cell"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // register cell
-        tableView.registerNib(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        refreshFeed()
+        tableView.registerNib(UINib(nibName: FeedTableViewCell.nib(), bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier)
+        //refreshFeed()
         
-        tabBarController?.delegate = self
+        print(AVCaptureDevice.devices())
         
-    }
-    
-    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CameraAnimatedTransitioning(duration: 1)
+        for device in AVCaptureDevice.devices() {
+            if let dev = device as? AVCaptureDevice {
+                print(dev.localizedName)
+            }
+        }
     }
 
     private func refreshFeed() {
@@ -54,9 +61,11 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
-        cell.feed = feedArray[indexPath.row]
-        return cell
+        if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier, forIndexPath: indexPath) as? FeedTableViewCell {
+            cell.feed = feedArray[indexPath.row]
+            return cell
+        }
+        return UITableViewCell(style: .Default, reuseIdentifier: nil)
     }
 
 }

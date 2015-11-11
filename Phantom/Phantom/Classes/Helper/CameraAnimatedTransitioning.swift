@@ -35,10 +35,12 @@ internal class CameraAnimatedTransitioning: NSObject, UIViewControllerAnimatedTr
         }
         
         // insert below the from view controller
-        toVC.view.alpha = 1
         cv.insertSubview(toVC.view, belowSubview: fromVC.view)
         
-        UIView.animateWithDuration(0.5, animations: { fromVC.view.alpha = 0 }) { success in
+        let height = CGRectGetHeight(UIScreen.mainScreen().bounds)
+        let frame = CGRectOffset(UIScreen.mainScreen().bounds, 0, height)
+        
+        UIView.animateWithDuration(0.5, animations: { fromVC.view.frame = frame }) { success in
             fromVC.view.removeFromSuperview()
             transitionContext.completeTransition(success)
         }
