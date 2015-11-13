@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class HomeFeedTableViewController: UITableViewController, UITabBarControllerDelegate {
 
@@ -33,10 +32,7 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
         // register cell
         tableView.registerNib(UINib(nibName: FeedTableViewCell.nib(), bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier)
         //refreshFeed()
-        
-        
-//        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-//        let _ = try? AVCaptureDeviceInput(device: backCamera)
+                
     }
 
     // Refresh the feed

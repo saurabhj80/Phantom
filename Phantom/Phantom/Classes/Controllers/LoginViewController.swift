@@ -18,6 +18,15 @@ class LoginViewController: UIViewController {
         initializeLoginButton()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // if logged in, then perform segue
+        if PFUser.currentUser() != nil {
+            self.performSegueWithIdentifier("loggedInSegue", sender: nil)
+        }
+    }
+    
     /// Creates and adds the login button to the view
     private func initializeLoginButton() {
         fbLogin = UIButton()
@@ -64,6 +73,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            // segue
             self.performSegueWithIdentifier("loggedInSegue", sender: nil)
         }
         

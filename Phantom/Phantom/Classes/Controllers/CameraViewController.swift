@@ -7,30 +7,41 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CameraViewController: UIViewController {
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         view.backgroundColor = UIColor.redColor()
-    }
+        
+        //        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        //        let _ = try? AVCaptureDeviceInput(device: backCamera)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        switch (AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)) {
+            case .NotDetermined: requestAccessForCamera()
+            case .Denied: fallthrough
+            case .Restricted: break
+            case .Authorized: break
+            
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    /// Requests access for the given camera
+    private func requestAccessForCamera() {
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { (success) in
+            if success {
+                self.startSession()
+            }
+        }
     }
-    */
+    
+    /// Starts the AVCapture Session
+    private func startSession() {
+        
+    }
 
 }

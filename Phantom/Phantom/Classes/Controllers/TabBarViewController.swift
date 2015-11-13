@@ -17,6 +17,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIVi
         self.delegate = self
     }
     
+    // Custom Segue
     func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if toVC.isKindOfClass(CameraViewController) {
             return CameraAnimatedTransitioning(duration: 1)
