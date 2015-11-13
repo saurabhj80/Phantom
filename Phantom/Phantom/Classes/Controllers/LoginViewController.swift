@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    // Login Button
     private var fbLogin: UIButton!
     
     override func viewDidLoad() {
@@ -51,6 +52,20 @@ class LoginViewController: UIViewController {
     
     /// Login button Action
     @objc private func loginButtonPressed() {
+        
+        // permissions to ask
+        let permissions = ["email"]
+        
+        // Log in with permission
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) { (user: PFUser?, error: NSError?) in
+            
+            // if user does not exist, that means that we had a problem with the login
+            guard let _ = user else {
+                return
+            }
+            
+            self.performSegueWithIdentifier("loggedInSegue", sender: nil)
+        }
         
     }
 

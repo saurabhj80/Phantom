@@ -97,10 +97,13 @@
                             <constraint firstItem="3aM-gy-mJM" firstAttribute="centerX" secondItem="vGO-eO-c0s" secondAttribute="centerX" id="x1E-pR-lYE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="YJO-3E-mDd" kind="presentation" identifier="loggedInSegue" id="Tlo-Xu-ocT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zj8-8h-6wU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-67" y="-303"/>
+            <point key="canvasLocation" x="-1129" y="1489"/>
         </scene>
         <!--Item-->
         <scene sceneID="vl9-P1-FX3">
