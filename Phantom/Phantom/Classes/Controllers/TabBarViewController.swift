@@ -17,6 +17,12 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIVi
         self.delegate = self
     }
     
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        if viewController.isKindOfClass(CameraViewController) {
+            tabBarController.tabBar.hidden = true
+        }
+    }
+    
     // Custom Segue
     func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if toVC.isKindOfClass(CameraViewController) {

@@ -15,7 +15,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.redColor()
+        view.backgroundColor = UIColor.blackColor()
         
         switch (AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)) {
             case .NotDetermined: requestAccessForCamera()
@@ -23,6 +23,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             case .Restricted: self.tabBarController?.selectedIndex = 0
             case .Authorized: requestAccessForCamera()
         }
+    }
+    
+    // hide the status bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     // MARK: AVFoundation
@@ -59,11 +64,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         session.addInput(inputDevice)
         
         // add output
-        let output = AVCaptureVideoDataOutput()
+        let output = AVCaptureStillImageOutput()
         session.addOutput(output)
         
         let queue = dispatch_queue_create("camera", nil)
-        output.setSampleBufferDelegate(self, queue: queue)
+        //output.setSampleBufferDelegate(self, queue: queue)
         
         let layer = AVCaptureVideoPreviewLayer(session: session)
         layer.videoGravity = AVLayerVideoGravityResizeAspect

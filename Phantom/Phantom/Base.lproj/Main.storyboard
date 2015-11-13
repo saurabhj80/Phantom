@@ -61,8 +61,45 @@
                     <view key="view" contentMode="scaleToFill" id="7ei-Mj-F1q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAo-o9-zZ6" customClass="CameraTopView" customModule="Phantom" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aN-iD-HaG">
+                                        <rect key="frame" x="8" y="10" width="48" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.98290598290598286" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonClicked:" destination="qAo-o9-zZ6" eventType="touchUpInside" id="wst-Iw-VlX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.12929342994542894" green="0.13154201133578425" blue="0.13154201133578425" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1aN-iD-HaG" firstAttribute="centerY" secondItem="qAo-o9-zZ6" secondAttribute="centerY" id="NEF-jG-bVU"/>
+                                    <constraint firstItem="1aN-iD-HaG" firstAttribute="leading" secondItem="qAo-o9-zZ6" secondAttribute="leading" constant="8" id="VYi-Qm-bi0"/>
+                                    <constraint firstAttribute="height" constant="50" id="vdg-bu-FM2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qAo-o9-zZ6" firstAttribute="top" secondItem="7ei-Mj-F1q" secondAttribute="top" id="gge-k0-rV8"/>
+                            <constraint firstAttribute="trailing" secondItem="qAo-o9-zZ6" secondAttribute="trailing" id="hSx-dj-8FC"/>
+                            <constraint firstItem="qAo-o9-zZ6" firstAttribute="top" secondItem="7ei-Mj-F1q" secondAttribute="top" id="mB5-sk-4rF"/>
+                            <constraint firstItem="qAo-o9-zZ6" firstAttribute="top" secondItem="wlC-uJ-e2c" secondAttribute="bottom" id="mCE-Qg-vLg"/>
+                            <constraint firstItem="qAo-o9-zZ6" firstAttribute="leading" secondItem="7ei-Mj-F1q" secondAttribute="leading" id="sTH-0y-deW"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mB5-sk-4rF"/>
+                                <exclude reference="mCE-Qg-vLg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="TWi-bh-Xex"/>
                 </viewController>
