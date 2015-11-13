@@ -18,6 +18,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIVi
     }
     
     func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CameraAnimatedTransitioning(duration: 1)
+        if toVC.isKindOfClass(CameraViewController) {
+            return CameraAnimatedTransitioning(duration: 1)
+        }
+        return nil
     }
 }

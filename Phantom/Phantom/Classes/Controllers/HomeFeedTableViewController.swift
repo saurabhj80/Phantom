@@ -22,22 +22,24 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // check if we are logged in
-        
+        // check if we are not logged in
+        if PFUser.currentUser() == nil {
+            
+            
+            
+            return
+        }
         
         // register cell
         tableView.registerNib(UINib(nibName: FeedTableViewCell.nib(), bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier)
         //refreshFeed()
         
-        print(AVCaptureDevice.devices())
         
-        for device in AVCaptureDevice.devices() {
-            if let dev = device as? AVCaptureDevice {
-                print(dev.localizedName)
-            }
-        }
+//        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+//        let _ = try? AVCaptureDeviceInput(device: backCamera)
     }
 
+    // Refresh the feed
     private func refreshFeed() {
         // fetch the feed
         ParseManager.sharedManager.fetchFeed { (feed, error) in

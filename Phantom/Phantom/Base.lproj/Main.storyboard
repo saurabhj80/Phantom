@@ -81,8 +81,21 @@
                     <view key="view" contentMode="scaleToFill" id="vGO-eO-c0s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phantom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aM-gy-mJM">
+                                <rect key="frame" x="175" y="28" width="250.5" height="76.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.51764705879999995" green="0.76078431369999999" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3aM-gy-mJM" firstAttribute="top" secondItem="ehx-d8-NvX" secondAttribute="bottom" constant="8" id="B1C-TW-X36"/>
+                            <constraint firstItem="3aM-gy-mJM" firstAttribute="centerX" secondItem="vGO-eO-c0s" secondAttribute="centerX" id="x1E-pR-lYE"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zj8-8h-6wU" userLabel="First Responder" sceneMemberID="firstResponder"/>
