@@ -11,5 +11,8 @@
 
 #import <Parse.h>
 #import <UIImageView+WebCache.h>
+#import <FBSDKCoreKit.h>
+#import <FBSDKLoginKit.h>
+#import <ParseFacebookUtilsV4.h>
 
 #endif /* BridingHeader_h */

@@ -22,6 +22,9 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // check if we are logged in
+        
+        
         // register cell
         tableView.registerNib(UINib(nibName: FeedTableViewCell.nib(), bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier)
         //refreshFeed()

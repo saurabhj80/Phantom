@@ -2,3 +2,4 @@ pod 'Parse’
 pod 'SDWebImage'
 pod 'FBSDKLoginKit'
 pod 'FBSDKCoreKit'
+pod 'ParseFacebookUtilsV4'
