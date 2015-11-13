@@ -8,7 +8,7 @@
 
 import UIKit
 
-/*! @brief A subclass of UITabBarController, which manages custom transition */
+/*! @description A subclass of UITabBarController, which manages custom transition */
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIViewControllerTransitioningDelegate {
 

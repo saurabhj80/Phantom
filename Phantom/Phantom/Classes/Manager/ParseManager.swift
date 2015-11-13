@@ -17,7 +17,6 @@ public class ParseManager: NSObject {
     
     // fetches the feed from parse
     public func fetchFeed(block: ([FeedObject]?, NSError?) -> ()) {
-        
         PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
             
             if let geo = geopoint {
@@ -40,4 +39,43 @@ public class ParseManager: NSObject {
         }
     }
     
+    
+    /// Method used for adding a post to parse
+    public func addFeed(image: UIImage, completionBlock:(Bool)->()) {
+        
+        // handle the case when the user is not logged in
+        guard let currentUser = PFUser.currentUser() else {
+            completionBlock(false)
+            return
+        }
+        
+        // fetch the current location
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
+            
+            // if we have the location
+            if let location = geopoint {
+                
+                // cannot convert the image to data
+                guard let data = UIImageJPEGRepresentation(image, 0.7) else {
+                    completionBlock(false)
+                    return
+                }
+                
+                // create the object to save to parse
+                let object = FeedObject()
+                object.postImage = PFFile(data: data)
+                object.user = currentUser
+                object.location = location
+                
+                // save the object
+                object.saveInBackgroundWithBlock { (success, error) in
+                    completionBlock(success)
+                }
+                
+            } else {
+                completionBlock(false)
+            }
+        }
+        
+    }
 }
