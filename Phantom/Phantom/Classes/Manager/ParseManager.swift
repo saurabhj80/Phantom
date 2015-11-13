@@ -15,7 +15,7 @@ public class ParseManager: NSObject {
     // Singleton
     public static let sharedManager = ParseManager()
     
-    // fetches the feed from parse
+    /// Fetches the feed from parse
     public func fetchFeed(block: ([FeedObject]?, NSError?) -> ()) {
         PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
             
@@ -38,7 +38,6 @@ public class ParseManager: NSObject {
             }
         }
     }
-    
     
     /// Method used for adding a post to parse
     public func addFeed(image: UIImage, completionBlock:(Bool)->()) {

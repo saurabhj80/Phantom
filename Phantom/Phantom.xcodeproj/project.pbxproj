@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02C70ED98086E9AADB76A2B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D5B0C49F5BB07D410CF1CC /* libPods.a */; };
+		1F0C87F21BF593FF0053C9E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C87F11BF593FF0053C9E0 /* LoginViewController.swift */; };
 		1F7024991BF29950003A2D13 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7024981BF29950003A2D13 /* TabBarViewController.swift */; };
 		1F70249B1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70249A1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift */; };
 		1F70249D1BF29AB6003A2D13 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70249C1BF29AB6003A2D13 /* CameraViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		15D5B0C49F5BB07D410CF1CC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F0C87F11BF593FF0053C9E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Classes/Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		1F7024981BF29950003A2D13 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Classes/Controllers/TabBarViewController.swift; sourceTree = "<group>"; };
 		1F70249A1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraAnimatedTransitioning.swift; path = Classes/Helper/CameraAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		1F70249C1BF29AB6003A2D13 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = Classes/Controllers/CameraViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				1F7024981BF29950003A2D13 /* TabBarViewController.swift */,
 				1FEA7C7D1BF18C2A00152170 /* HomeFeedTableViewController.swift */,
 				1F70249C1BF29AB6003A2D13 /* CameraViewController.swift */,
+				1F0C87F11BF593FF0053C9E0 /* LoginViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0C87F21BF593FF0053C9E0 /* LoginViewController.swift in Sources */,
 				1FEA7C6C1BF18B7900152170 /* AppDelegate.swift in Sources */,
 				1FEA7C8B1BF1989400152170 /* ParseManager.swift in Sources */,
 				1F70249B1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift in Sources */,
