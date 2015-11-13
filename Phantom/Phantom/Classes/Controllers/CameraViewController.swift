@@ -9,26 +9,29 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
+    // MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
         view.backgroundColor = UIColor.redColor()
         
-        //        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        //        let _ = try? AVCaptureDeviceInput(device: backCamera)
-
         switch (AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)) {
             case .NotDetermined: requestAccessForCamera()
             case .Denied: fallthrough
-            case .Restricted: break
-            case .Authorized: break
-            
+            case .Restricted: self.tabBarController?.selectedIndex = 0
+            case .Authorized: requestAccessForCamera()
         }
     }
+    
+    // MARK: AVFoundation
+    
+    private var session: AVCaptureSession = {
+        let session = AVCaptureSession()
+        session.sessionPreset = AVCaptureSessionPresetMedium
+        return session
+    }()
     
     /// Requests access for the given camera
     private func requestAccessForCamera() {
@@ -41,6 +44,40 @@ class CameraViewController: UIViewController {
     
     /// Starts the AVCapture Session
     private func startSession() {
+        
+        // Back Camera
+        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        // input device
+        guard let inputDevice = try? AVCaptureDeviceInput(device: backCamera) else {
+            
+            // if we did not get the input device, then return
+            return
+        }
+        
+        // add the input
+        session.addInput(inputDevice)
+        
+        // add output
+        let output = AVCaptureVideoDataOutput()
+        session.addOutput(output)
+        
+        let queue = dispatch_queue_create("camera", nil)
+        output.setSampleBufferDelegate(self, queue: queue)
+        
+        let layer = AVCaptureVideoPreviewLayer(session: session)
+        layer.videoGravity = AVLayerVideoGravityResizeAspect
+        layer.frame = self.view.bounds
+        self.view.layer.addSublayer(layer)
+        
+        // Start the session
+        session.startRunning()
+    }
+    
+    
+    // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
+    
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         
     }
 
