@@ -102,6 +102,9 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="TWi-bh-Xex"/>
+                    <connections>
+                        <outlet property="topCancelView" destination="qAo-o9-zZ6" id="IpX-vo-oLI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1V-4L-hL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

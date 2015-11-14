@@ -8,10 +8,19 @@
 
 import UIKit
 
+/// Camera Top View Delegate
+protocol CameraTopViewDelegate: class {
+    func cameraTopView(view: CameraTopView, didPressCancelButton sender: UIButton)
+}
+
 class CameraTopView: UIView {
 
+    // Delegate
+    weak var delegate: CameraTopViewDelegate?
+    
+    // IBAction
     @IBAction func cancelButtonClicked(sender: UIButton!) {
-        print("Cancel button clicked")
+        delegate?.cameraTopView(self, didPressCancelButton: sender)
     }
 
 }

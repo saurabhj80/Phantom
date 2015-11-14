@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     // MARK: View Life Cycle
     
@@ -30,6 +30,28 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         return true
     }
     
+    // MARK: Top Cancel View
+    
+    @IBOutlet weak var topCancelView: CameraTopView! {
+        didSet {
+            topCancelView.delegate = self
+        }
+    }
+    
+    func cameraTopView(view: CameraTopView, didPressCancelButton sender: UIButton) {
+        dismissCurrentViewController()
+    }
+    
+    private func dismissCurrentViewController() {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+            // stop the session
+            self.session.stopRunning()
+        }
+        
+        // change the index
+        self.tabBarController?.selectedIndex = 0
+    }
+    
     // MARK: AVFoundation
     
     private var session: AVCaptureSession = {
@@ -43,6 +65,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { (success) in
             if success {
                 self.startSession()
+            } else {
+                self.dismissCurrentViewController()
             }
         }
     }
@@ -50,33 +74,48 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     /// Starts the AVCapture Session
     private func startSession() {
         
-        // Back Camera
-        let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
-        // input device
-        guard let inputDevice = try? AVCaptureDeviceInput(device: backCamera) else {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
             
-            // if we did not get the input device, then return
-            return
+            // Back Camera
+            let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+            
+            // input device
+            guard let inputDevice = try? AVCaptureDeviceInput(device: backCamera) else {
+                
+                // if we did not get the input device, then return
+                return
+            }
+        
+            // add the input
+            if self.session.canAddInput(inputDevice) {
+                self.session.addInput(inputDevice)
+            }
+            
+            // add output
+            let stillImageOutput = AVCaptureStillImageOutput()
+            
+            if self.session.canAddOutput(stillImageOutput) {
+                self.session.addOutput(stillImageOutput)
+            }
+            
+            let videoOutput = AVCaptureVideoDataOutput()
+            let queue = dispatch_queue_create("video queue", nil)
+            videoOutput.setSampleBufferDelegate(self, queue: queue)
+            
+            if self.session.canAddOutput(videoOutput) {
+                self.session.addOutput(videoOutput)
+            }
+            
+            
+            let layer = AVCaptureVideoPreviewLayer(session: self.session)
+            layer.videoGravity = AVLayerVideoGravityResizeAspect
+            layer.frame = self.view.bounds
+            self.view.layer.addSublayer(layer)
+            
+            // Start the session
+            self.session.startRunning()
         }
         
-        // add the input
-        session.addInput(inputDevice)
-        
-        // add output
-        let output = AVCaptureStillImageOutput()
-        session.addOutput(output)
-        
-        let queue = dispatch_queue_create("camera", nil)
-        //output.setSampleBufferDelegate(self, queue: queue)
-        
-        let layer = AVCaptureVideoPreviewLayer(session: session)
-        layer.videoGravity = AVLayerVideoGravityResizeAspect
-        layer.frame = self.view.bounds
-        self.view.layer.addSublayer(layer)
-        
-        // Start the session
-        session.startRunning()
     }
     
     
@@ -85,5 +124,4 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         
     }
-
 }
