@@ -14,6 +14,7 @@
 		1F7024991BF29950003A2D13 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7024981BF29950003A2D13 /* TabBarViewController.swift */; };
 		1F70249B1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70249A1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift */; };
 		1F70249D1BF29AB6003A2D13 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70249C1BF29AB6003A2D13 /* CameraViewController.swift */; };
+		1F894B241BF70AF2006DC1E1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F894B231BF70AF2006DC1E1 /* CameraPreviewView.swift */; };
 		1FEA7C6C1BF18B7900152170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA7C6B1BF18B7900152170 /* AppDelegate.swift */; };
 		1FEA7C711BF18B7900152170 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FEA7C6F1BF18B7900152170 /* Main.storyboard */; };
 		1FEA7C731BF18B7900152170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FEA7C721BF18B7900152170 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		1F7024981BF29950003A2D13 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Classes/Controllers/TabBarViewController.swift; sourceTree = "<group>"; };
 		1F70249A1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraAnimatedTransitioning.swift; path = Classes/Helper/CameraAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		1F70249C1BF29AB6003A2D13 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = Classes/Controllers/CameraViewController.swift; sourceTree = "<group>"; };
+		1F894B231BF70AF2006DC1E1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraPreviewView.swift; path = Classes/Views/CameraPreviewView.swift; sourceTree = "<group>"; };
 		1FEA7C681BF18B7900152170 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FEA7C6B1BF18B7900152170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FEA7C701BF18B7900152170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				1FEA7C811BF18D2400152170 /* FeedTableViewCell.swift */,
 				1FEA7C841BF18E3F00152170 /* FeedTableViewCell.xib */,
 				1F1682831BF68479003957AF /* CameraTopView.swift */,
+				1F894B231BF70AF2006DC1E1 /* CameraPreviewView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				1FEA7C6C1BF18B7900152170 /* AppDelegate.swift in Sources */,
 				1FEA7C8B1BF1989400152170 /* ParseManager.swift in Sources */,
 				1F1682841BF68479003957AF /* CameraTopView.swift in Sources */,
+				1F894B241BF70AF2006DC1E1 /* CameraPreviewView.swift in Sources */,
 				1F70249B1BF29A03003A2D13 /* CameraAnimatedTransitioning.swift in Sources */,
 				1FEA7C821BF18D2400152170 /* FeedTableViewCell.swift in Sources */,
 				1FEA7C871BF1916300152170 /* FeedObject.swift in Sources */,

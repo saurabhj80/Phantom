@@ -84,12 +84,21 @@
                                     <constraint firstAttribute="height" constant="50" id="vdg-bu-FM2"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOj-9W-7Mi" customClass="CameraPreviewView" customModule="Phantom" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="600" height="501"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kOj-9W-7Mi" firstAttribute="leading" secondItem="7ei-Mj-F1q" secondAttribute="leading" id="CVh-El-b27"/>
+                            <constraint firstAttribute="trailing" secondItem="kOj-9W-7Mi" secondAttribute="trailing" id="GgK-Cd-DgD"/>
                             <constraint firstItem="qAo-o9-zZ6" firstAttribute="top" secondItem="7ei-Mj-F1q" secondAttribute="top" id="gge-k0-rV8"/>
                             <constraint firstAttribute="trailing" secondItem="qAo-o9-zZ6" secondAttribute="trailing" id="hSx-dj-8FC"/>
+                            <constraint firstItem="Uh7-RR-rYz" firstAttribute="top" secondItem="kOj-9W-7Mi" secondAttribute="bottom" id="hn4-cf-ZVi"/>
+                            <constraint firstItem="kOj-9W-7Mi" firstAttribute="top" secondItem="qAo-o9-zZ6" secondAttribute="bottom" id="m3V-H0-muO"/>
                             <constraint firstItem="qAo-o9-zZ6" firstAttribute="top" secondItem="7ei-Mj-F1q" secondAttribute="top" id="mB5-sk-4rF"/>
                             <constraint firstItem="qAo-o9-zZ6" firstAttribute="top" secondItem="wlC-uJ-e2c" secondAttribute="bottom" id="mCE-Qg-vLg"/>
                             <constraint firstItem="qAo-o9-zZ6" firstAttribute="leading" secondItem="7ei-Mj-F1q" secondAttribute="leading" id="sTH-0y-deW"/>
@@ -103,6 +112,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="TWi-bh-Xex"/>
                     <connections>
+                        <outlet property="cameraPreviewView" destination="kOj-9W-7Mi" id="VOD-fd-0tg"/>
                         <outlet property="topCancelView" destination="qAo-o9-zZ6" id="IpX-vo-oLI"/>
                     </connections>
                 </viewController>

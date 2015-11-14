@@ -54,6 +54,9 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
     
     // MARK: AVFoundation
     
+    // the preview of the view from the camera
+    @IBOutlet weak var cameraPreviewView: CameraPreviewView!
+    
     private var session: AVCaptureSession = {
         let session = AVCaptureSession()
         session.sessionPreset = AVCaptureSessionPresetMedium
@@ -74,7 +77,7 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
     /// Starts the AVCapture Session
     private func startSession() {
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             
             // Back Camera
             let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -105,7 +108,6 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
             if self.session.canAddOutput(videoOutput) {
                 self.session.addOutput(videoOutput)
             }
-            
             
             let layer = AVCaptureVideoPreviewLayer(session: self.session)
             layer.videoGravity = AVLayerVideoGravityResizeAspect
