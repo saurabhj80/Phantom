@@ -110,8 +110,19 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
         }
     }
     
+    private var hasBeenSetUp = false;
+    
     /// Starts the AVCapture Session
     private func startSession() {
+        
+        if hasBeenSetUp {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                self.session.startRunning()
+            }
+            return
+        }
+        
+        hasBeenSetUp = true
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             

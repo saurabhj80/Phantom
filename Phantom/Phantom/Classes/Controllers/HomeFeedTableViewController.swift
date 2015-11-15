@@ -28,7 +28,8 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
         
         // register cell
         tableView.registerNib(UINib(nibName: FeedTableViewCell.nib(), bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier)
-        //refreshFeed()
+        tableView.rowHeight = 400
+        refreshFeed(nil)
                 
     }
     
@@ -74,6 +75,7 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier, forIndexPath: indexPath) as? FeedTableViewCell {
             cell.feed = feedArray[indexPath.row]
+            cell.selectionStyle = .None
             return cell
         }
         return UITableViewCell(style: .Default, reuseIdentifier: nil)

@@ -39,8 +39,7 @@ class FeedTableViewCell: UITableViewCell {
             }
         }
         
-        
-        
+        usernameLabel?.text = feed.text
     }
     
 }

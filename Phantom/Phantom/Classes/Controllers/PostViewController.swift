@@ -22,7 +22,10 @@ class PostViewController: UIViewController {
     }
 
     @IBAction func saveFeed(sender: UIButton) {
-        ParseManager.sharedManager.addFeed(image, text: textView.text) { success in
+        
+        let img = image.resizeImageToSize(CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: 0.75*CGRectGetWidth(UIScreen.mainScreen().bounds)))
+        
+        ParseManager.sharedManager.addFeed(img, text: textView.text) { success in
             dispatch_async(dispatch_get_main_queue()) {
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
