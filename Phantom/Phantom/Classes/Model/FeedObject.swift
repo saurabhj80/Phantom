@@ -15,8 +15,8 @@ public class FeedObject: PFObject, PFSubclassing {
         return "FeedObject"
     }
     
-    dynamic var postImage: PFFile!
-    dynamic var user: PFUser!
-    dynamic var location: PFGeoPoint!
-    dynamic var text: String!
+    @NSManaged var postImage: PFFile!
+    @NSManaged var user: PFUser!
+    @NSManaged var location: PFGeoPoint!
+    @NSManaged var text: String!
 }

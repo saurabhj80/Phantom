@@ -42,7 +42,7 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
     }
 
     // Refresh the feed
-    private func refreshFeed() {
+    private func refreshFeed(completionBlock: (() -> ())?) {
         // fetch the feed
         ParseManager.sharedManager.fetchFeed { (feed, error) in
             guard let objects = feed else {
@@ -53,11 +53,15 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
                 self.feedArray = objects
                 self.tableView.reloadData()
             }
+            
+            completionBlock?()
         }
     }
 
     @IBAction func refreshContollerPressed(sender: UIRefreshControl) {
-        refreshFeed()
+        refreshFeed {
+            sender.endRefreshing()
+        }
     }
     
     
