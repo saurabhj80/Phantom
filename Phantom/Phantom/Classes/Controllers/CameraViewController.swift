@@ -9,13 +9,15 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CameraPreviewViewDelegate {
     
-    // MARK: View Life Cycle
+    // hide the status bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor.blackColor()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         switch (AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)) {
             case .NotDetermined: requestAccessForCamera()
@@ -23,11 +25,6 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
             case .Restricted: self.tabBarController?.selectedIndex = 0
             case .Authorized: requestAccessForCamera()
         }
-    }
-    
-    // hide the status bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true
     }
     
     // MARK: Top Cancel View
@@ -55,7 +52,16 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
     // MARK: AVFoundation
     
     // the preview of the view from the camera
-    @IBOutlet weak var cameraPreviewView: CameraPreviewView!
+    @IBOutlet weak var cameraPreviewView: CameraPreviewView! {
+        didSet {
+            cameraPreviewView.delegate = self
+        }
+    }
+    
+    // Capture button clicked
+    func cameraPreviewViewDidClickCaptureButton(view: CameraPreviewView) {
+        
+    }
     
     private var session: AVCaptureSession = {
         let session = AVCaptureSession()
@@ -108,11 +114,8 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
             if self.session.canAddOutput(videoOutput) {
                 self.session.addOutput(videoOutput)
             }
-            
-            let layer = AVCaptureVideoPreviewLayer(session: self.session)
-            layer.videoGravity = AVLayerVideoGravityResizeAspect
-            layer.frame = self.view.bounds
-            self.view.layer.addSublayer(layer)
+                        
+            self.cameraPreviewView.session = self.session
             
             // Start the session
             self.session.startRunning()
