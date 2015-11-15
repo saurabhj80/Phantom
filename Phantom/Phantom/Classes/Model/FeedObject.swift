@@ -18,4 +18,5 @@ public class FeedObject: PFObject, PFSubclassing {
     dynamic var postImage: PFFile!
     dynamic var user: PFUser!
     dynamic var location: PFGeoPoint!
+    dynamic var text: String!
 }

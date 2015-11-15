@@ -40,7 +40,7 @@ public class ParseManager: NSObject {
     }
     
     /// Method used for adding a post to parse
-    public func addFeed(image: UIImage, completionBlock:(Bool)->()) {
+    public func addFeed(image: UIImage, text: String, completionBlock:(Bool)->()) {
         
         // handle the case when the user is not logged in
         guard let currentUser = PFUser.currentUser() else {
@@ -65,6 +65,7 @@ public class ParseManager: NSObject {
                 object.postImage = PFFile(data: data)
                 object.user = currentUser
                 object.location = location
+                object.text = text
                 
                 // save the object
                 object.saveInBackgroundWithBlock { (success, error) in

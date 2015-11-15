@@ -13,7 +13,7 @@ import UIKit
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIViewControllerTransitioningDelegate {
 
     // The custom animation
-    private var animation = CameraAnimatedTransitioning(duration: 1)
+    private var animation = CameraAnimatedTransitioning(duration: 0.5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +21,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIVi
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        if viewController.isKindOfClass(CameraViewController) {
+        if selectedIndex == 1{
             tabBarController.tabBar.hidden = true
         }
     }
     
     // Custom Segue
     func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let reversed = toVC.isKindOfClass(CameraViewController.self) ? false : true
+        let reversed = selectedIndex == 0 ? false : true
         animation.reverse = reversed
         return animation
     }

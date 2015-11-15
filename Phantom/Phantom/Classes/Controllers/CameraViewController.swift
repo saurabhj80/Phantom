@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CameraPreviewViewDelegate {
+class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CircleViewDelegate {
     
     // hide the status bar
     override func prefersStatusBarHidden() -> Bool {
@@ -49,23 +49,53 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
         self.tabBarController?.selectedIndex = 0
     }
     
-    // MARK: AVFoundation
+    // MARK: Circle View Delegate
     
     // the preview of the view from the camera
-    @IBOutlet weak var cameraPreviewView: CameraPreviewView! {
+    @IBOutlet weak var cameraPreviewView: CameraPreviewView!
+    
+    // the capture button
+    @IBOutlet weak var circleView: CircleView! {
         didSet {
-            cameraPreviewView.delegate = self
+            circleView.delegate = self
         }
     }
     
-    // Capture button clicked
-    func cameraPreviewViewDidClickCaptureButton(view: CameraPreviewView) {
+    func circleViewDidClickButton(view: CircleView) {
         
+        let connection = self.stillImageOutput.connectionWithMediaType(AVMediaTypeVideo)
+        self.stillImageOutput.captureStillImageAsynchronouslyFromConnection(connection) { (buffer, error) -> Void in
+            
+            guard let buffer = buffer else {
+                return
+            }
+            
+            // we have the data
+            if let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer) {
+                let image = UIImage(data: data)
+                self.performSegueWithIdentifier("captureSegue", sender: image)
+            }
+        }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "captureSegue" {
+            let vc = segue.destinationViewController as? PostViewController
+            if let image = sender as? UIImage {
+                vc?.image = image
+            }
+        }
+    }
+    
+    // MARK: AVFoundation
+    
+    private var stillImageOutput: AVCaptureStillImageOutput!
+    private var videoOutput: AVCaptureVideoDataOutput!
+
     private var session: AVCaptureSession = {
         let session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSessionPresetMedium
+        session.sessionPreset = AVCaptureSessionPreset640x480
         return session
     }()
     
@@ -101,18 +131,18 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
             }
             
             // add output
-            let stillImageOutput = AVCaptureStillImageOutput()
+            self.stillImageOutput = AVCaptureStillImageOutput()
             
-            if self.session.canAddOutput(stillImageOutput) {
-                self.session.addOutput(stillImageOutput)
+            if self.session.canAddOutput(self.stillImageOutput) {
+                self.session.addOutput(self.stillImageOutput)
             }
             
-            let videoOutput = AVCaptureVideoDataOutput()
+            self.videoOutput = AVCaptureVideoDataOutput()
             let queue = dispatch_queue_create("video queue", nil)
-            videoOutput.setSampleBufferDelegate(self, queue: queue)
+            self.videoOutput.setSampleBufferDelegate(self, queue: queue)
             
-            if self.session.canAddOutput(videoOutput) {
-                self.session.addOutput(videoOutput)
+            if self.session.canAddOutput(self.videoOutput) {
+                self.session.addOutput(self.videoOutput)
             }
                         
             self.cameraPreviewView.session = self.session
