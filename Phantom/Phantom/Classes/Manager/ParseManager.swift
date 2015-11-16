@@ -10,9 +10,8 @@ import UIKit
 
 public class ParseManager: NSObject {
     
-    private override init() {}
-    
     // Singleton
+    private override init() {}
     public static let sharedManager = ParseManager()
     
     /// Fetches the feed from parse

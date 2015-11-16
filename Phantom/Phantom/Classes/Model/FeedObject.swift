@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+    A subclass of PFObject, representing the way data is store on Parse
+ */
 public class FeedObject: PFObject, PFSubclassing {
     
     // PFSubclassing

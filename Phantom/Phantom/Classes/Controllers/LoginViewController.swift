@@ -30,8 +30,9 @@ class LoginViewController: UIViewController {
     /// Creates and adds the login button to the view
     private func initializeLoginButton() {
         fbLogin = UIButton()
-        fbLogin.backgroundColor = UIColor.blackColor()
+        fbLogin.backgroundColor = UIColor.whiteColor()
         fbLogin.setTitle("Login", forState: .Normal)
+        fbLogin.setTitleColor(UIColor.blackColor(), forState: .Normal)
         fbLogin.titleLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         fbLogin.translatesAutoresizingMaskIntoConstraints = false
         fbLogin.addTarget(self, action: "loginButtonPressed", forControlEvents: .TouchUpInside)
@@ -60,6 +61,7 @@ class LoginViewController: UIViewController {
     }
     
     /// Login button Action
+    // Selectors needs to be exposed to @objc when made private
     @objc private func loginButtonPressed() {
         
         // permissions to ask
@@ -77,6 +79,14 @@ class LoginViewController: UIViewController {
             self.performSegueWithIdentifier("loggedInSegue", sender: nil)
         }
         
+    }
+    
+    /// Fetches the details from facebook
+    private func fetchDetailsFromFacebook() {
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        request.startWithCompletionHandler { (connection, object, error) -> Void in
+            
+        }
     }
 
 }

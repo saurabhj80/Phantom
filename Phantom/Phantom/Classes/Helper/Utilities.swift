@@ -11,7 +11,7 @@ import Foundation
 extension UIImage {
     
     func resizeImageToSize(size: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 1);
+        UIGraphicsBeginImageContextWithOptions(size, false, 0);
         let rect = CGRectMake(0, 0, size.width, size.height);
         drawInRect(rect)
         let img = UIGraphicsGetImageFromCurrentImageContext();
