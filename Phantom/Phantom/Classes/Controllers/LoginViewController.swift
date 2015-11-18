@@ -24,7 +24,12 @@ class LoginViewController: UIViewController {
         // if logged in, then perform segue
         if PFUser.currentUser() != nil {
             self.performSegueWithIdentifier("loggedInSegue", sender: nil)
-        }
+        }        
+    }
+    
+    // Status bar style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     /// Creates and adds the login button to the view
@@ -75,17 +80,26 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            // segue
-            self.performSegueWithIdentifier("loggedInSegue", sender: nil)
+            // fetch the data from facebook
+            self.fetchDetailsFromFacebook {
+                dispatch_async(dispatch_get_main_queue()) {
+                    // segue
+                    self.performSegueWithIdentifier("loggedInSegue", sender: nil)
+                }
+            }
+            
         }
         
     }
     
     /// Fetches the details from facebook
-    private func fetchDetailsFromFacebook() {
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+    private func fetchDetailsFromFacebook(block: (() -> ())?) {
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "email, picture.type(normal)"])
         request.startWithCompletionHandler { (connection, object, error) -> Void in
-            
+            if let info = object as? [NSObject: NSObject] {
+                PFUser.currentUser()?.storeFacebookInfo(info)
+            }
+            block?()
         }
     }
 

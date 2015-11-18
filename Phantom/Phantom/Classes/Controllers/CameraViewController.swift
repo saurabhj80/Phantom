@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CircleViewDelegate {
+class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CircleViewDelegate, PostViewControllerDelegate {
     
     // hide the status bar
     override func prefersStatusBarHidden() -> Bool {
@@ -24,6 +24,14 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
             case .Denied: fallthrough
             case .Restricted: self.tabBarController?.selectedIndex = 0
             case .Authorized: requestAccessForCamera()
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+            // stop the session
+            self.session.stopRunning()
         }
     }
     
@@ -82,10 +90,22 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
         super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "captureSegue" {
             let vc = segue.destinationViewController as? PostViewController
+            vc?.delegate = self
             if let image = sender as? UIImage {
                 vc?.image = image
             }
         }
+    }
+    
+    // MARK: PostView Controller Delegate
+    
+    func postViewControllerDidSaveObject(controller: PostViewController) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.dismissCurrentViewController()
+        }
+        self.navigationController?.popViewControllerAnimated(true)
+        CATransaction.commit()
     }
     
     // MARK: AVFoundation

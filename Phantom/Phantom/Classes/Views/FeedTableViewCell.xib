@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="374.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dFc-hr-JsA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dFc-hr-JsA">
                         <rect key="frame" x="0.0" y="66" width="375" height="308.5"/>
                         <animations/>
                     </imageView>
@@ -25,10 +25,10 @@
                             <constraint firstAttribute="width" constant="50" id="zPl-jh-elV"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4B-rw-inf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4B-rw-inf">
                         <rect key="frame" x="66" y="22" width="301" height="21"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -40,6 +40,7 @@
                     <constraint firstAttribute="trailing" secondItem="dFc-hr-JsA" secondAttribute="trailing" id="Sjo-i9-i0D"/>
                     <constraint firstItem="dFc-hr-JsA" firstAttribute="top" secondItem="J1I-1J-z8F" secondAttribute="bottom" constant="8" id="VJ1-z6-zT8"/>
                     <constraint firstItem="o4B-rw-inf" firstAttribute="leading" secondItem="J1I-1J-z8F" secondAttribute="trailing" constant="8" id="XWB-WL-lfY"/>
+                    <constraint firstItem="o4B-rw-inf" firstAttribute="centerY" secondItem="J1I-1J-z8F" secondAttribute="centerY" id="c43-OF-TcY"/>
                     <constraint firstItem="J1I-1J-z8F" firstAttribute="leading" secondItem="oR8-4V-fnT" secondAttribute="leading" constant="8" id="nt3-E9-OOv"/>
                     <constraint firstItem="J1I-1J-z8F" firstAttribute="top" secondItem="oR8-4V-fnT" secondAttribute="top" constant="8" id="tqm-JY-iay"/>
                     <constraint firstAttribute="trailing" secondItem="o4B-rw-inf" secondAttribute="trailing" constant="8" id="udX-MZ-6I0"/>

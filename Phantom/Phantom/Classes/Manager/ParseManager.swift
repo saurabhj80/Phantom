@@ -16,6 +16,13 @@ public class ParseManager: NSObject {
     
     /// Fetches the feed from parse
     public func fetchFeed(block: ([FeedObject]?, NSError?) -> ()) {
+        
+        var task = UIBackgroundTaskIdentifier()
+        task = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
+            UIApplication.sharedApplication().endBackgroundTask(task)
+            task = UIBackgroundTaskInvalid
+        }
+        
         PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
             
             if let geo = geopoint {
@@ -31,9 +38,14 @@ public class ParseManager: NSObject {
                     } else {
                         block(nil, error)
                     }
+                                        
+                    UIApplication.sharedApplication().endBackgroundTask(task)
+                    task = UIBackgroundTaskInvalid
                 }
             } else {
                 block(nil, error)
+                UIApplication.sharedApplication().endBackgroundTask(task)
+                task = UIBackgroundTaskInvalid
             }
         }
     }
@@ -45,6 +57,12 @@ public class ParseManager: NSObject {
         guard let currentUser = PFUser.currentUser() else {
             completionBlock(false)
             return
+        }
+        
+        var task = UIBackgroundTaskIdentifier()
+        task = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
+            UIApplication.sharedApplication().endBackgroundTask(task)
+            task = UIBackgroundTaskInvalid
         }
         
         // fetch the current location
@@ -69,10 +87,14 @@ public class ParseManager: NSObject {
                 // save the object
                 object.saveInBackgroundWithBlock { (success, error) in
                     completionBlock(success)
+                    UIApplication.sharedApplication().endBackgroundTask(task)
+                    task = UIBackgroundTaskInvalid
                 }
                 
             } else {
                 completionBlock(false)
+                UIApplication.sharedApplication().endBackgroundTask(task)
+                task = UIBackgroundTaskInvalid
             }
         }
         

@@ -28,9 +28,8 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
         
         // register cell
         tableView.registerNib(UINib(nibName: FeedTableViewCell.nib(), bundle: nil), forCellReuseIdentifier: Constants.CellIdentifier)
-        tableView.rowHeight = 400
+        tableView.rowHeight = 500
         refreshFeed(nil)
-                
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -52,7 +51,9 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
             
             if objects.count > 0 {
                 self.feedArray = objects
-                self.tableView.reloadData()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
+                }
             }
             
             completionBlock?()
@@ -64,7 +65,6 @@ class HomeFeedTableViewController: UITableViewController, UITabBarControllerDele
             sender.endRefreshing()
         }
     }
-    
     
     // MARK: - Table view data source
 

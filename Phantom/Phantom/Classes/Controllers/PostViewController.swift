@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol PostViewControllerDelegate: class {
+    func postViewControllerDidSaveObject(controller: PostViewController)
+}
+
 class PostViewController: UIViewController {
 
+    // Delegate
+    weak var delegate: PostViewControllerDelegate?
+    
     // IBOutlets
     @IBOutlet private weak var imgView: UIImageView!
     @IBOutlet private weak var textView: UITextView!
     
+    // image to save to parse
     var image: UIImage!
     
     override func viewDidLoad() {
@@ -21,26 +29,16 @@ class PostViewController: UIViewController {
         imgView.image = self.image
     }
 
+    /// Post to Parse
     @IBAction func saveFeed(sender: UIButton) {
         
-        let img = image.resizeImageToSize(CGSize(width: CGRectGetWidth(UIScreen.mainScreen().bounds), height: 0.75*CGRectGetWidth(UIScreen.mainScreen().bounds)))
+        let maxWidth = CGRectGetWidth(UIScreen.mainScreen().bounds)
+        let img = image.resizeImageToSize(CGSize(width: maxWidth, height: 1.25 * maxWidth))
         
         ParseManager.sharedManager.addFeed(img, text: textView.text) { success in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.navigationController?.popToRootViewControllerAnimated(true)
+            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                self?.delegate?.postViewControllerDidSaveObject(self!)
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
