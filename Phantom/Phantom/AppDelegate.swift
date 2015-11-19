@@ -24,10 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // register
         FeedObject .registerSubclass()
         Parse.setApplicationId(ParseConstants.ApplicationId, clientKey: ParseConstants.ClientKey)
-        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
-        
-        // if logged in then switch storyboard
-        
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)        
         return true
     }
     
