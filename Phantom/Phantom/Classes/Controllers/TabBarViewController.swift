@@ -18,6 +18,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        
+        UITabBar.appearance().tintColor = UIColor.blackColor()
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {

@@ -310,11 +310,11 @@
             </objects>
             <point key="canvasLocation" x="2140" y="1210"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="vl9-P1-FX3">
             <objects>
                 <navigationController id="v00-34-ulp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7qd-bD-kSB"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" selectedImage="house" id="7qd-bD-kSB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T9c-AD-i87">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -328,11 +328,11 @@
             </objects>
             <point key="canvasLocation" x="-67" y="405"/>
         </scene>
-        <!--Item-->
+        <!--Camera-->
         <scene sceneID="4aV-Cu-Xol">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="g3H-9m-eAc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="TWi-bh-Xex"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="camera" selectedImage="camera" id="TWi-bh-Xex"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y9J-8o-5mz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -354,4 +354,8 @@
             <point key="canvasLocation" x="-67" y="1210"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="32" height="32"/>
+        <image name="house" width="32" height="32"/>
+    </resources>
 </document>

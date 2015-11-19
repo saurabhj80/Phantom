@@ -30,6 +30,7 @@ public class ParseManager: NSObject {
                 let query = PFQuery(className: FeedObject.parseClassName())
                 query.includeKey("user")
                 query.whereKey("location", nearGeoPoint: geo, withinMiles: 5)
+                query.addDescendingOrder("createdAt")
                 query.findObjectsInBackgroundWithBlock { (object, error) in
                     
                     // if objects exist
