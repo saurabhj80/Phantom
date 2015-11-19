@@ -55,11 +55,6 @@ extension CIFilter {
             filters.append(blur)
         }
         
-        // Color Clamp
-        if let colorClamp = CIFilter(name: "CIColorClamp", withInputParameters: ["inputMaxComponents": CIVector(x: 0.9, y: 0.9, z: 0.9, w: 0.9), "inputMinComponents": CIVector(x: 0.2, y: 0.2, z: 0.2, w: 0.2)]) {
-            filters.append(colorClamp)
-        }
-        
         // Instant
         if let instant = CIFilter(name: "CIPhotoEffectInstant") {
             filters.append(instant)

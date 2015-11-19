@@ -39,11 +39,14 @@ class PhotoFilter: PhotoFilterProtocol {
             // Input to filter
             filter.setValue(ciimage, forKey: kCIInputImageKey)
             
+            let orientation = image.imageOrientation
+            let scale = image.scale
+            
             // Get the output image
             if let img = filter.outputImage {
                 let rect = img.extent
                 let image = self.context.createCGImage(img, fromRect: rect)
-                block(UIImage(CGImage: image))
+                block(UIImage(CGImage: image, scale: scale, orientation: orientation))
             } else {
                 block(nil)
             }

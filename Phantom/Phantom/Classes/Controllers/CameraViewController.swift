@@ -108,6 +108,10 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
         CATransaction.commit()
     }
     
+    func postViewController(controller: PostViewController, didPressCancelButton sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     // MARK: AVFoundation
     
     private var stillImageOutput: AVCaptureStillImageOutput!
