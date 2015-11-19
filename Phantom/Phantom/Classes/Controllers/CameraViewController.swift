@@ -142,7 +142,10 @@ class CameraViewController: UIViewController, CameraTopViewDelegate, AVCaptureVi
             return
         }
         
-        hasBeenSetUp = true
+        defer {
+            hasBeenSetUp = true
+        }
+        
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             

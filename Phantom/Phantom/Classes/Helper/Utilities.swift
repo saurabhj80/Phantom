@@ -10,6 +10,7 @@ import Foundation
 
 extension UIImage {
     
+    /// Resizes the image to fit a specific size
     func resizeImageToSize(size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0);
         let rect = CGRectMake(0, 0, size.width, size.height);
@@ -34,4 +35,42 @@ extension PFUser {
         }
         self.saveEventually()
     }
+}
+
+
+extension CIFilter {
+    
+    /// Returns some filters, which are instances of CIFilters
+    class func allFilters() -> [CIFilter] {
+        
+        var filters = [CIFilter]()
+        
+        // Sepia
+        if let sepia = CIFilter(name: "CISepiaTone") {
+            filters.append(sepia)
+        }
+        
+        // Blur
+        if let blur = CIFilter(name: "CIGaussianBlur", withInputParameters: [kCIInputRadiusKey: 1]) {
+            filters.append(blur)
+        }
+        
+        // Color Clamp
+        if let colorClamp = CIFilter(name: "CIColorClamp", withInputParameters: ["inputMaxComponents": CIVector(x: 0.9, y: 0.9, z: 0.9, w: 0.9), "inputMinComponents": CIVector(x: 0.2, y: 0.2, z: 0.2, w: 0.2)]) {
+            filters.append(colorClamp)
+        }
+        
+        // Instant
+        if let instant = CIFilter(name: "CIPhotoEffectInstant") {
+            filters.append(instant)
+        }
+        
+        // Noir
+        if let noir = CIFilter(name: "CIPhotoEffectNoir") {
+            filters.append(noir)
+        }
+
+        return filters
+    }
+    
 }
