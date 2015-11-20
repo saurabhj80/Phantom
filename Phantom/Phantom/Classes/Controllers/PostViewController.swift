@@ -13,17 +13,23 @@ protocol PostViewControllerDelegate: class {
     func postViewController(controller: PostViewController, didPressCancelButton sender: UIButton)
 }
 
-class PostViewController: UIViewController, FilterViewControllerDelegate {
+class PostViewController: UIViewController, FilterViewControllerDelegate, UITextFieldDelegate {
 
     // Delegate
     weak var delegate: PostViewControllerDelegate?
     
     // IBOutlets
     @IBOutlet private weak var imgView: UIImageView!
-    @IBOutlet private weak var captionField: UITextField!
+    @IBOutlet private weak var captionField: UITextField! {
+        didSet {
+            captionField.delegate = self
+        }
+    }
     
     // image to save to parse
     var image: UIImage!
+    
+    // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +41,8 @@ class PostViewController: UIViewController, FilterViewControllerDelegate {
         return true
     }
 
+    // MARK: IBAction
+    
     /// Post to Parse
     @IBAction func saveFeed(sender: UIButton) {
         
@@ -72,5 +80,12 @@ class PostViewController: UIViewController, FilterViewControllerDelegate {
     
     func filterViewController(viewController: FilterViewController, didSelectFilteredImage image: UIImage) {
         imgView.image = image
+    }
+    
+    // MARK: UITextField Delegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

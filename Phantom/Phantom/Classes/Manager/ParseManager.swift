@@ -83,7 +83,7 @@ public class ParseManager: NSObject {
                 object.postImage = PFFile(data: data)
                 object.user = currentUser
                 object.location = location
-                object.text = text
+                object.text = text ?? ""
                 
                 // save the object
                 object.saveInBackgroundWithBlock { (success, error) in
